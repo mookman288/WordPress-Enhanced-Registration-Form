@@ -25,6 +25,11 @@ function cr(&$fields, &$errors) {
 		
 		if (!$fields) {
 			$errors -> add('field', 'Your activation link is malformed. Please try registering again.');
+		/*
+		 * This should use hash_equals or some variant, but I'll leave that to the author during integration. 
+		 */
+		} elseif ($key != hash('sha256', $fields['user_login'] . $fields['user_email'])) {
+			$errors -> add('field', 'Your activation link has been tampered with. Please try registering again.');
 		} else {
 			//Decode the fields.
 			$fields	=	unserialize(base64_decode($fields));
