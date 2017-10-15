@@ -90,10 +90,9 @@ function cr_display_form($fields = array(), $errors = null) {
   
   <div class="step2-form" style="margin:auto;text-align:left;max-width:1080px;">
 <h1 class="til-postheader entry-title">User Registration: Step 2 of 2</h1>
-<strong><span class="step2">1 - IBEW Membership Check</span> &gt; 2 - User Registration</strong>
   <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="post">
     <div>
-		<label for="user_login">Card Number <strong>*</strong></label><br>
+		<label for="user_login">Username<strong>*</strong></label><br>
 		<input type="text" name="user_login" value="<?php echo (isset($fields['user_login']) ? $fields['user_login'] : '') ?>" readonly>
     </div>
 	<br>
@@ -165,7 +164,7 @@ function cr_validate(&$fields, &$errors) {
     }
 
   if (username_exists($fields['user_login'])) {
-    $errors->add('user_name', 'Sorry, that Card Number has already been registered.');
+    $errors->add('user_name', 'Sorry, that Username has already been registered.');
 }
   if (strlen($fields['user_pass']) < 8) {
     $errors->add('user_pass', 'Password length must be greater than 8 characters');
